@@ -1,3 +1,5 @@
+package com.sorbonne.classification;
+
 import java.util.Stack;
 
 public class Digraph {
@@ -15,7 +17,7 @@ public class Digraph {
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public Digraph(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+        if (V < 0) throw new IllegalArgumentException("Number of vertices in a com.sorbonne.classification.Digraph must be nonnegative");
         this.V = V;
         this.E = 0;
         indegree = new int[V];
@@ -37,7 +39,7 @@ public class Digraph {
 
         this.V = G.V();
         this.E = G.E();
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+        if (V < 0) throw new IllegalArgumentException("Number of vertices in a com.sorbonne.classification.Digraph must be nonnegative");
 
         // update indegrees
         indegree = new int[V];

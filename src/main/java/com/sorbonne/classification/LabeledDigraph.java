@@ -1,5 +1,6 @@
+package com.sorbonne.classification;
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LabeledDigraph {
     private static final String NEWLINE = System.getProperty("line.separator");

@@ -1,3 +1,5 @@
+package com.sorbonne.classification;
+
 import java.util.LinkedList;
 
 public class BFS {
@@ -39,7 +41,7 @@ public class BFS {
         dist[src] = 0;
         queue.add(src);
 
-        // standard BFS algorithm
+        // standard com.sorbonne.classification.BFS algorithm
         while (!queue.isEmpty()) {
             int u = queue.poll();
             for (Integer i : digraph.adj(u)) {
@@ -49,7 +51,7 @@ public class BFS {
                     pred[i] = u;
                     queue.add(i);
 
-                    //We stop BFS when we find
+                    //We stop com.sorbonne.classification.BFS when we find
                     //destination
                     if (i == dest) {
                         return dist[i];

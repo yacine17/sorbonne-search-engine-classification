@@ -1,3 +1,5 @@
+package com.sorbonne.classification;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,7 +32,8 @@ public class Jaccard {
             return this.index;
 
         try {
-            this.index = Files.lines(this.filePath).flatMap(line -> stream(line.split("[^A-Za-z]")))
+            this.index = Files.lines(this.filePath)
+                    .flatMap(line -> stream(line.split("[^A-Za-z]")))
                     .filter(val -> !val.equals(""))
                     .collect(Collectors.groupingBy(String::toLowerCase, Collectors.summingInt(e -> 1)));
             return this.index;
@@ -40,7 +43,7 @@ public class Jaccard {
     }
 
     /**
-     * Get Jaccard distance between two indexes
+     * Get com.sorbonne.classification.Jaccard distance between two indexes
      *
      * @param other
      * @return d(D1, D2) =SUM[(m,k1)∈index(D1)∧(m,k2)∈index(D2) max(k1, k2) − min(k1, k2)] / SUM[(m,k1)∈index(D1)∧(m,k2)∈index(D2) max(k1, k2)]
@@ -50,6 +53,7 @@ public class Jaccard {
 
         Stream.of(this.index().keySet(), other.keySet())
                 .flatMap(Collection::stream)
+                .parallel()
                 .collect(Collectors.toSet())
                 .forEach(key -> {
                     int r = Math.abs(this.index.getOrDefault(key, 0) - other.getOrDefault(key, 0));
@@ -87,8 +91,6 @@ public class Jaccard {
                         .map(val -> val.split(" "))
                         .collect(Collectors.toMap(val -> val[0], val -> Integer.valueOf(val[1])));
                 bufferedReader.close();
-                System.out.println("Read from file");
-                System.out.println("index = " + index);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

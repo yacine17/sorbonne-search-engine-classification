@@ -1,3 +1,5 @@
+package com.sorbonne.classification;
+
 public class Fraction {
     int denominator = 0, numerator = 0;
 

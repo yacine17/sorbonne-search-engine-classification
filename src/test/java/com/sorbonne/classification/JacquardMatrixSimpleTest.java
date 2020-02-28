@@ -1,15 +1,18 @@
-import org.junit.Test;
+package com.sorbonne.classification;
 
+import com.sorbonne.classification.JacquardMatrix;
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class JacquardMatrixTest {
+public class JacquardMatrixSimpleTest {
 
     @Test
-    public void getMatrix(){
+    public void checkMatrixValueWith2Values(){
         Map<String, Map<String, Double>> expectedResult = new HashMap<>();
 
         Map<String, Double> map1 = new HashMap<>();
@@ -22,7 +25,10 @@ public class JacquardMatrixTest {
         map2.put("test2.txt", 0d);
         expectedResult.put("test2.txt", map2);
 
-        JacquardMatrix jacquardMatrix = new JacquardMatrix(List.of("src/test/resources/test1.txt", "src/test/resources/test2.txt"));
+        JacquardMatrix jacquardMatrix = new JacquardMatrix();
+        jacquardMatrix.addFile(Path.of("src/test/resources/test1.txt"));
+        jacquardMatrix.addFile(Path.of("src/test/resources/test2.txt"));
+
 
         assertEquals(expectedResult, jacquardMatrix.getMatrix());
     }

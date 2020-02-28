@@ -1,4 +1,5 @@
-import java.util.stream.Stream;
+package com.sorbonne.classification;
+
 
 public class Main {
 

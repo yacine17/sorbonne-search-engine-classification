@@ -1,18 +1,19 @@
-import org.junit.Test;
+package com.sorbonne.classification;
+
+import com.sorbonne.classification.Jaccard;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
-public class JaccardTest {
+public class JacquardSimpleTest {
 
-    @org.junit.Test
+    @Test
     public void index() throws URISyntaxException, IOException {
         Map<String, Integer> expectedResult = new HashMap<>();
         expectedResult.put("cat", 3);
@@ -27,7 +28,7 @@ public class JaccardTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.Test
+    @Test
     public void distance() throws URISyntaxException, IOException {
         Jaccard jaccard = new Jaccard(Path.of(ClassLoader.getSystemResource("test1.txt").toURI()));
 
@@ -71,5 +72,14 @@ public class JaccardTest {
         double result = jaccard.distance(jaccard.index());
 
         assertEquals(0, result, 0);
+    }
+
+    @Test
+    public void distanceBetween10039And10084Files() {
+        Jaccard jaccard10039 = new Jaccard(Path.of("book-master/10039-0.txt"));
+        Jaccard jaccard10084 = new Jaccard(Path.of("book-master/10084.txt.utf-8"));
+
+        System.out.println(jaccard10039.distance(jaccard10084.index()));
+
     }
 }

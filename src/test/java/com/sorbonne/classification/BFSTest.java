@@ -1,3 +1,5 @@
+package com.sorbonne.classification;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
